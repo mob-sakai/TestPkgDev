@@ -1,0 +1,23 @@
+{
+  "name": "com.coffee.docfx-for-unity",
+  "displayName": "DocFxForUnity",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mob-sakai/TestPkgDev.git"
+  },
+  "author": {
+    "name": "mob-sakai",
+    "email": "sakai861104@gmail.com",
+    "url": "https://github.com/mob-sakai"
+  },
+  "keywords": [
+    "documentation",
+    "docfx",
+    "editor"
+  ],
+  "dependencies": {
+    "com.unity.ide.rider": "1.0.0"
+  }
+}
