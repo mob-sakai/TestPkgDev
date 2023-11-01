@@ -53,10 +53,12 @@ jobs:
           # unityVersion: ${{ steps.setup.outputs.unityVersion }}
           customParameters: -nographics
           githubToken: ${{ github.token }}
-          coverageOptions: "dontClear;generateHtmlReport;generateBadgeReport;pathFilters:+**/Packages/src/**;assemblyFilters:+<packages>,-*.Editor,-*.Test"
+          coverageOptions: "dontClear;generateHtmlReport;generateBadgeReport;pathFilters:+**/Packages/src/**;assemblyFilters:+<packages>"
+          # coverageOptions: "dontClear;generateHtmlReport;generateBadgeReport;pathFilters:+**/Packages/src/**;assemblyFilters:+<packages>,-*.Editor,-*.Test"
 
       - name: 🔍 Report Summary
         run: |
+          ls -la
           ls -la CodeCoverage/Report
           cat CodeCoverage/Report/Summary.md >> $GITHUB_STEP_SUMMARY
 
