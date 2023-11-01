@@ -14,9 +14,6 @@ namespace Coffee
     {
         private const string k_DstDir = "Library/DocFxAssemblies";
 
-#if DOCFX_DEBUG
-    [MenuItem("Development/Coffee.DocFxForUnity.SetupCsProj")]
-#endif
         public static void SetupCsProj()
         {
             Console.WriteLine($"[Coffee.DocFxForUnity.SetupCsProj]");

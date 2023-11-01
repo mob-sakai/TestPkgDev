@@ -1,9 +1,9 @@
 {
-    "name": "EditModeTests",
+    "name": "Coffee.DocFxForUnity.Test",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Coffee.TestPkgDev"
+        "Unity.Rider.Editor"
     ],
     "includePlatforms": [
         "Editor"
