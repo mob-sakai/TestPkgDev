@@ -1,7 +1,7 @@
 {
   "name": "com.coffee.docfx-for-unity",
   "displayName": "DocFxForUnity",
-  "version": "1.0.0",
+  "version": "1.0.0-preview.1",
   "license": "MIT",
   "repository": {
     "type": "git",
