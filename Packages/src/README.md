@@ -28,6 +28,7 @@ It is inspired by https://github.com/NormandErwan/DocFxForUnity.
   - UPM-like CSS.
   - Collapsing and displaying inherited members at the bottom of the page.
   - Collapsing and displaying inherited classes.
+  - Add version selector.
 
 <br><br>
 
@@ -65,17 +66,6 @@ It is inspired by https://github.com/NormandErwan/DocFxForUnity.
           ]
         }
       ],
-      "build": {
-        "globalMetadata": {
-          "_appTitle": "Example documentation", // Change this to your document title.
-          "_appFooter": "Example documentation", // Change this to your document footer.
-          ...
-        },
-        "sitemap": {
-          "baseUrl": "https://mob-sakai.github.io/DocFxForUnity" // Change this to your GitHub Pages URL.
-        }
-        ...
-      }
       ...
     ```
 
@@ -96,7 +86,7 @@ It is inspired by https://github.com/NormandErwan/DocFxForUnity.
 
 5. Execute DocFx to generate documentation. The generated website will be visible at http://localhost:8080.
     ```bash
-    $ docfx Documentation/docfx.json --seve
+    $ docfx Documentation/docfx.json --serve
     ```
 
 ### Setup for GitHubActions
@@ -138,7 +128,6 @@ With your support, I can spend more time on development. :)
 ## License
 
 * MIT
-* © UTJ/UCL
 
 ## Author
 

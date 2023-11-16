@@ -4,72 +4,74 @@ using System.Xml.Linq;
 using Packages.Rider.Editor;
 using UnityEditor;
 
-namespace Coffee
+/// <summary>
+/// Setup csproj files for DocFx on CI environment (docker).
+/// <para />
+/// Run on cli: `-executeMethod DocFxForUnity.SetupCsProj`
+/// </summary>
+public static class DocFxForUnity
 {
+    private const string k_DstDir = "Library/DocFxAssemblies";
+
     /// <summary>
-    /// Setup csproj files for DocFx on CI environment.
-    /// `-executeMethod Coffee.DocFxForUnity.SetupCsProj`
+    /// Setup csproj files for DocFx on CI environment (docker).
+    /// Generate csproj files and copy dlls to 'Library/DocFxAssemblies' in project.
     /// </summary>
-    public static class DocFxForUnity
+    public static void SetupCsProj()
     {
-        private const string k_DstDir = "Library/DocFxAssemblies";
+        Console.WriteLine($"[Coffee.DocFxForUnity.SetupCsProj]");
 
-        public static void SetupCsProj()
+        // Generate solution and project file.
+        Console.WriteLine($"  -> Generate solution and project files (RiderScriptEditor)");
+        RiderScriptEditor.SyncSolution();
+
+        // Delete local old dlls.
+        Console.WriteLine($"  -> Delete local old dlls");
+        if (Directory.Exists(k_DstDir))
         {
-            Console.WriteLine($"[Coffee.DocFxForUnity.SetupCsProj]");
-
-            // Generate solution and project file.
-            Console.WriteLine($"  -> Generate solution and project files (RiderScriptEditor)");
-            RiderScriptEditor.SyncSolution();
-
-            // Delete local old dlls.
-            Console.WriteLine($"  -> Delete local old dlls");
-            if (Directory.Exists(k_DstDir))
-            {
-                Directory.Delete(k_DstDir, true);
-            }
-
-            Directory.CreateDirectory(k_DstDir);
-
-            // Copy dlls to local.
-            foreach (var csprojPath in Directory.GetFiles(".", "*.csproj"))
-            {
-                CopyDllsForCsProj(csprojPath);
-            }
+            Directory.Delete(k_DstDir, true);
         }
 
-        private static void CopyDllsForCsProj(string csprojPath)
+        Directory.CreateDirectory(k_DstDir);
+
+        // Copy dlls to local.
+        foreach (var csprojPath in Directory.GetFiles(".", "*.csproj"))
         {
-            Console.WriteLine($"  -> Copy dlls for: {csprojPath}");
-            var xml = XDocument.Load(csprojPath);
-            foreach (var e in xml.Descendants())
-            {
-                // Already copied -> skip.
-                if (e.Name.LocalName != "HintPath" || e.Value.StartsWith(k_DstDir)) continue;
+            CopyDllsForCsProj(csprojPath);
+        }
+    }
 
-                // Copy dlls.
-                var src = e.Value;
-                var dst = $"{k_DstDir}/{Path.GetFileName(src)}";
+    private static void CopyDllsForCsProj(string csprojPath)
+    {
+        Console.WriteLine($"  -> Copy dlls for: {csprojPath}");
+        var xml = XDocument.Load(csprojPath);
+        foreach (var e in xml.Descendants())
+        {
+            // Already copied -> skip.
+            if (e.Name.LocalName != "HintPath" || e.Value.StartsWith(k_DstDir)) continue;
 
-                // Copy dll files.
-                CopyFile(src, dst);
+            // Copy dlls.
+            var src = e.Value;
+            var dst = $"{k_DstDir}/{Path.GetFileName(src)}";
 
-                // Copy xml files.
-                CopyFile(Path.ChangeExtension(src, ".xml"), Path.ChangeExtension(dst, ".xml"));
+            // Copy dll files.
+            CopyFile(src, dst);
 
-                // Change HintPath value.
-                e.Value = dst;
-            }
+            // Copy xml files.
+            CopyFile(Path.ChangeExtension(src, ".xml"), Path.ChangeExtension(dst, ".xml"));
 
-            xml.Save(csprojPath);
+            // Change HintPath value.
+            e.Value = dst;
         }
 
-        private static void CopyFile(string src, string dst)
-        {
-            if (!File.Exists(src) || File.Exists(dst)) return;
+        xml.Save(csprojPath);
+    }
 
-            Console.WriteLine($"    - {Path.GetFileName(dst)}");
-            File.Copy(src, dst);
-        }
+    private static void CopyFile(string src, string dst)
+    {
+        if (!File.Exists(src) || File.Exists(dst)) return;
+
+        Console.WriteLine($"    - {Path.GetFileName(dst)}");
+        File.Copy(src, dst);
     }
 }
