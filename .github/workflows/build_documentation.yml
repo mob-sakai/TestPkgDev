@@ -28,7 +28,7 @@ jobs:
 
       - name: ⚙️Setup matrix
         id: matrix
-        run: echo "matrix=$(jq -c . < ./Documentation/metadata.json)" | tee $GITHUB_OUTPUT
+        run: echo "matrix=$(jq -c '{ include: .versions }' < ./Documentation/metadata.json)" | tee $GITHUB_OUTPUT
   
   build:
     name: 📘 Build Documentation
