@@ -30,7 +30,7 @@ jobs:
         id: matrix
         run: |
           matrix=`jq -c '{ include: .versions }' ./Documentation/metadata.json`
-          echo matrix="${matrix}" | tee $GITHUB_OUTPUT
+          echo matrix="${matrix}" | tee -a $GITHUB_OUTPUT $GITHUB_STEP_SUMMARY
   
   build:
     name: 📘 Build Documentation
