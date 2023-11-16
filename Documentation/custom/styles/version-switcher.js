@@ -1,3 +1,5 @@
+const offline = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+
 function populateVersionSwitcher(metadata) {
     if (!metadata) return;
 
@@ -13,7 +15,7 @@ function populateVersionSwitcher(metadata) {
 }
 
 $(function () {
-    const requestURL = `${document.location.origin}/metadata.json`;
+    const requestURL = offline ? 'metadata.json' : '../metadata.json';
     $.getJSON(requestURL, populateVersionSwitcher);
 
     window.refresh = function (_) {
