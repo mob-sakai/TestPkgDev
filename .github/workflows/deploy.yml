@@ -49,6 +49,11 @@ jobs:
         with:
           path: _site
 
+      - name: 🚚 Move Documentation Files To '_site'
+        run: |
+          mv _site/Documentation/*  _site/
+          rm -r _site/Documentation
+
       - name: 📦 Upload '_site'
         uses: actions/upload-pages-artifact@v2
 

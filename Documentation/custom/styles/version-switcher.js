@@ -1,5 +1,3 @@
-const offline = location.hostname === "localhost" || location.hostname === "127.0.0.1";
-
 function populateVersionSwitcher(metadata) {
     if (!metadata) return;
 
@@ -14,12 +12,24 @@ function populateVersionSwitcher(metadata) {
     });
 }
 
+function updateVersionSwitcher() {
+    const offline = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+    const requestURL = '../metadata.json';
+    $.getJSON(requestURL, m => {
+        if (offline){
+            populateVersionSwitcher(m);
+        }
+        else{
+            $.getJSON(m.metadata, populateVersionSwitcher)
+        }
+    });
+}
+
 $(function () {
-    const requestURL = offline ? 'metadata.json' : '../metadata.json';
-    $.getJSON(requestURL, populateVersionSwitcher);
+    updateVersionSwitcher();
 
     window.refresh = function (_) {
-        $.getJSON(requestURL, populateVersionSwitcher);
+        updateVersionSwitcher();
     };
 
     $(document).click(function (e) {

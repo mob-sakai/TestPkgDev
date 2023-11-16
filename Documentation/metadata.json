@@ -1,4 +1,5 @@
 {
+  "metadata": "https://mob-sakai.github.io/TestPkgDev/Documentation/metadata.json",
   "include": [
     {
       "ref": "develop",
