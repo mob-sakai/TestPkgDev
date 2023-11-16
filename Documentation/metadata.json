@@ -6,7 +6,7 @@
       "unity": "2021.1",
       "dest": "_site",
       "appTitle": "TestPkgDev 4.0.0",
-      "url": "https://mob-sakai.github.io/TestPkgDev"
+      "url": "https://mob-sakai.github.io/TestPkgDev/Documentation"
     },
     {
       "ref": "develop",
@@ -14,7 +14,7 @@
       "unity": "2020.3",
       "dest": "_site/2.0.0",
       "appTitle": "TestPkgDev 2.0.0",
-      "url": "https://mob-sakai.github.io/TestPkgDev/2.0.0"
+      "url": "https://mob-sakai.github.io/TestPkgDev/Documentation/2.0.0"
     },
     {
       "ref": "develop",
@@ -22,7 +22,7 @@
       "unity": "2019.4",
       "dest": "_site/1.0.0",
       "appTitle": "TestPkgDev 1.0.0",
-      "url": "https://mob-sakai.github.io/TestPkgDev/1.0.0"
+      "url": "https://mob-sakai.github.io/TestPkgDev/Documentation/1.0.0"
     }
   ]
 }

@@ -13,11 +13,6 @@ on:
         description: The contents of Unity license file
         required: true
   workflow_dispatch:
-    inputs:
-      deploy:
-        description: Deploy to GitHub Pages
-        required: true
-        default: false
 
 jobs:
   setup:
@@ -68,28 +63,26 @@ jobs:
             Library-${{ env.unityVersion }}-
             Library-
 
-#      - name: 🛠️ Run UnityEditor To Setup '*.csproj'
-#        uses: game-ci/unity-builder@v3
-#        timeout-minutes: 30
-#        continue-on-error: true # NOTE: Disabling the check for the "Build results" output? https://github.com/game-ci/unity-builder/issues/563
-#        env:
-#          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-#        with:
-#          unityVersion: ${{ env.unityVersion }}
-#          targetPlatform: ${{ env.targetPlatform }}
-#          allowDirtyBuild: true
-#          buildMethod: DocFxForUnity.SetupCsProj
+      - name: 🛠️ Run UnityEditor To Setup CsProj
+        uses: game-ci/unity-builder@v4
+        timeout-minutes: 30
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          unityVersion: ${{ env.unityVersion }}
+          targetPlatform: ${{ env.targetPlatform }}
+          allowDirtyBuild: true
+          buildMethod: DocFxForUnity.SetupCsProj
 
       - name: 📘 Build docfx
         run: |
-          echo "==== Update ===="
+          echo "==== Update Configuration ===="
           jq " \
           .build.sitemap.baseUrl = \"${{ matrix.url }}\" | \
           .build.globalMetadata._appTitle = \"${{ matrix.appTitle }}\" | \
           .build.dest = \"${{ matrix.dest }}\" \
           " Documentation/docfx.json > Documentation/__docfx.json
           
-          echo "==== Configuration ===="
           cat Documentation/__docfx.json
           
           echo "==== Build ===="
@@ -100,28 +93,3 @@ jobs:
         with:
           name: Documentation
           path: Documentation/_site
-
-  deploy:
-    if: inputs.deploy == 'true'
-    name: 🚀 Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    steps:
-      - name: 📦 Download Artifacts To '_site'
-        uses: actions/download-artifact@v3
-        with:
-          path: _site
-
-      - name: 🚚 Move Documentation Files To '_site'
-        run: |
-          mv _site/Documentation/* _site/
-          rm -r _site/Documentation
-
-      - name: 📦 Upload '_site'
-        uses: actions/upload-pages-artifact@v2
-
-      - name: 🚀 Deploy To GitHub Pages
-        uses: actions/deploy-pages@v2
