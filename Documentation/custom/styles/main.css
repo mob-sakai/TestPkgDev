@@ -3,6 +3,19 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.navbar-brand>img {
+    height: fit-content;
+}
+
+.toc a {
+    font-weight: 500;
+}
+
+a.xref {
+    font-weight: 500;
+    /*font-size: 14px;*/
+}
+
 .collapsible {
     cursor: pointer;
 }

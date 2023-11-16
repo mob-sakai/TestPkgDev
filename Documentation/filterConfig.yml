@@ -11,3 +11,6 @@ apiRules:
 - exclude:
     uidRegex: ^UnityEngine\.MonoBehaviour\..*(Coroutine|Invok|print|destroyCancellationToken|useGUILayout|runInEditMode)
     type: Member
+- exclude:
+      uidRegex: ^(Packages\.Rider\.Editor\.UnitTesting|JetBrains\.Rider\.Unity\.Editor)
+      type: Namespace
