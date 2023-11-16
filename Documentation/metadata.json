@@ -1,5 +1,5 @@
 {
-  "metadata": "https://mob-sakai.github.io/TestPkgDev/metadata.json",
+  "metadataUrl": "https://mob-sakai.github.io/TestPkgDev/metadata.json",
   "versions": [
     {
       "ref": "develop",

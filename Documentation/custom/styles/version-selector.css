@@ -86,12 +86,12 @@
       .component-select__option--is-active {
         background-color: #e3eff8; }
 
-#version-switcher-ul{
+#version-select-ul{
   overflow-y: auto;
   max-height: 300px;
 }
 
-#version-switcher-select {
+#version-select {
   display: inline-block;
   display: -webkit-inline-box;
 }

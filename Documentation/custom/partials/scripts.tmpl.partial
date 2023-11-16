@@ -3,5 +3,7 @@
 <script type="text/javascript" src="{{_rel}}styles/docfx.vendor.min.js"></script>
 <script type="text/javascript" src="{{_rel}}styles/docfx.js"></script>
 <script type="text/javascript" src="{{_rel}}styles/main.js"></script>
-<script type="text/javascript" src="{{_rel}}styles/version-switcher.js"></script>
-<link rel="stylesheet" href="{{_rel}}styles/version-switcher.css">
+<script type="text/javascript" src="{{_rel}}styles/collapsible.js"></script>
+<script type="text/javascript" src="{{_rel}}styles/version-selector.js"></script>
+<link rel="stylesheet" href="{{_rel}}styles/collapsible.css">
+<link rel="stylesheet" href="{{_rel}}styles/version-selector.css">

@@ -17,6 +17,10 @@
   ],
   "build": {
     "dest": "_site",
+    "globalMetadata": {
+      "_enableSearch": "true",
+      "_gitUrlPattern": "github"
+    },
     "content": [
       {
         "src": "src",
