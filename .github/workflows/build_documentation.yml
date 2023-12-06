@@ -1,5 +1,7 @@
 # Required secrets
 #   UNITY_LICENSE: The contents of Unity license file
+#   UNITY_EMAIL: The email address for your Unity account
+#   UNITY_PASSWORD: The password that you use to login to Unity
 name: 📘 Build Documentation
 
 env:
@@ -70,6 +72,8 @@ jobs:
         timeout-minutes: 30
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           unityVersion: ${{ env.unityVersion }}
           targetPlatform: ${{ env.targetPlatform }}
