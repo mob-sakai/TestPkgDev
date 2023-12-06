@@ -3,7 +3,6 @@
     {
       "dest": "src/api",
       "memberLayout": "separatePages",
-      "allowCompilationErrors": true,
       "filter": "filterConfig.yml",
       "src": [
         {

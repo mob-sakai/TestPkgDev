@@ -1,6 +1,8 @@
-- name: About
+# This is an automatically generated file
+items:
+- name: Manual
   href: index.md
-- name: Coniunctis nec qui
+- name: Coniunctis nec qui et lanient monticolae vitae
   href: coniunctis.md
 - name: Etiam nantemque exul
   href: etiam.md

@@ -3,29 +3,31 @@ DocFxForUnity
 
 [![](https://img.shields.io/github/v/release/mob-sakai/DocFxForUnity)](https://github.com/mob-sakai/DocFxForUnity/releases)
 [![](https://img.shields.io/github/license/mob-sakai/DocFxForUnity.svg)](https://github.com/mob-sakai/DocFxForUnity/blob/main/LICENSE.txt)
+[![](https://mob-sakai.github.io/DocFxForUnity/CodeCoverage/badge_linecoverage.svg)](https://mob-sakai.github.io/TestPkgDev/CodeCoverage/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-orange.svg)](http://makeapullrequest.com)
 [![](https://img.shields.io/github/watchers/mob-sakai/DocFxForUnity.svg?style=social&label=Watch)](https://github.com/mob-sakai/DocFxForUnity/subscription)
 [![](https://img.shields.io/twitter/follow/mob_sakai.svg?label=Follow&style=social)](https://twitter.com/intent/follow?screen_name=mob_sakai)
 
-<< [Description](#Description) | [Usage](#usage) | [Contributing](#contributing) >>
+<< [📝 Description](#-description) | [📘 Documentation](#-documentation) | [🎮 Demo](#-demo) | [⚙ Installation](#-installation) | [🚀 Usage](#-usage) | [🛠 Development Note](#-development-note) | [🤝 Contributing](#-contributing) >>
+
+<< [Description](#Description) | [Docs]() | [Usage](#usage) | [Contributing](#contributing) >>
 
 <br><br>
 
 ## Description
 
 This package is designed to facilitate the integration of DocFx into Unity projects.
+You can create documents for multiple versions, as shown on [the sample page](https://mob-sakai.github.io/DocFxForUnity).
 
-It is inspired by https://github.com/NormandErwan/DocFxForUnity.
+It is inspired by https://github.com/NormandErwan/DocFxForUnity. 👍
 
 ### Features
 
-- Integration of DocFx into Unity projects.
 - CI environment support, including GitHub Actions.
-- Generation method can be invoked from the command line interface (CLI).
+- Generation method can be invoked from the command line interface with `-executeMethod DocFxForUnity.Setup`.
   - Generate sln/csproj files.
   - Copy referenced assemblies for documentation generation.
 - Provides a custom DocFx template with the following features:
-  - UPM-like CSS.
   - Collapsing and displaying inherited members at the bottom of the page.
   - Collapsing and displaying inherited classes.
   - Add version selector.
@@ -37,6 +39,7 @@ It is inspired by https://github.com/NormandErwan/DocFxForUnity.
 ### Setup for your Unity project
 
 1. [Install DocFX](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool).
+
 2. Clone this repository and copy `Documentation/` folder to your Unity project.
     ```diff
         .
@@ -49,7 +52,7 @@ It is inspired by https://github.com/NormandErwan/DocFxForUnity.
 
 3. Edit `Documentation/docfx.json` to config documentation.  
     See <https://dotnet.github.io/docfx/tutorial/docfx.exe_user_manual.html#3-docfxjson-format> for more details.
-    ```javascript
+    ```diff
     {
       "metadata": [
         {
@@ -58,9 +61,9 @@ It is inspired by https://github.com/NormandErwan/DocFxForUnity.
             {
               "src": "..", // relative path from Documentation/docfx.json. This is the root of your Unity project.
               "files": [
-                "Your.CsProject.One.csproj", // Add your csproj files.
-                "Your.CsProject.Two.csproj",
-                "Glob.Is.Supported.*.csproj"
+    +            "Your.CsProject.One.csproj", // Add your csproj files.
+    +            "Your.CsProject.Two.csproj",
+    +            "Glob.Is.Supported.*.csproj"
               ]
             }
           ]
@@ -68,6 +71,8 @@ It is inspired by https://github.com/NormandErwan/DocFxForUnity.
       ],
       ...
     ```
+
+4. Edit `Documentation/src` for documentation.
 
 4. Edit `Documentation/filterConfig.yml` to filter namespaces/types/members/etc. to generate documentation.  
    See <https://dotnet.github.io/docfx/docs/dotnet-api-docs.html#filter-by-uid> for more details.
